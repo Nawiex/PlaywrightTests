@@ -4,6 +4,21 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  # This enables the manual button
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to test (e.g., staging, prod)'
+        required: true
+        default: 'staging'
+      browser:
+        description: 'Browser to use'
+        required: true
+        default: 'chromium'
+        type: choice
+        options:
+        - chromium
+        - firefox
 jobs:
   test:
     timeout-minutes: 60
